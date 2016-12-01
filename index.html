@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exo-Js-Localstorage</title>
+</head>
+<body>
+    Nous stockons dans une variables un nom de couleur et sa valeur hexadecimale.
+    <p><a href="index2.html">Voir ces elements transmis via local storage</a></p>
+    <div id="nbclicks">Nombre de click: <span id="clicks">0</span></div>
+    <p></p>
+    <div>
+        <button onclick="compteur()">Click me !</button>
+        <button onclick="resetcompteur()">Reset count !</button>
+    </div>
+    <script type="text/javascript">
+        sessionStorage.setItem("couleur","vert");
+        sessionStorage.setItem("couleurH","#42f474");
+
+        var monspan = document.getElementById("clicks");
+        var parent = document.getElementById("nbclicks");
+
+        function compteur(){
+            var click = sessionStorage.getItem("clic");
+            if (!click){
+                click = 0;
+            }
+            click++;
+            sessionStorage.setItem("clic", click);
+            monspan.innerHTML = click;
+            parent.appendChild(monspan);
+        }
+
+        function resetcompteur(){
+            sessionStorage.clear();
+            monspan.innerHTML = 0;
+            parent.appendChild(monspan);
+        }
+    </script>
+</body>
+</html>

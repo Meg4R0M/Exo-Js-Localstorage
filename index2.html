@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exo-Js-Localstorage</title>
+</head>
+<body>
+    Nous recuperons une variables un nom de couleur et sa valeur hexadecimale:
+    <script type="text/javascript">
+        var container = document.createElement('div');
+        var macouleur = sessionStorage.getItem("couleur");
+        var macouleurhexa = sessionStorage.getItem("couleurH");
+
+        container.innerHTML= "Nom de ma couleur: "+macouleur+", Sa valeur Hexadecimale: "+macouleurhexa;
+        document.body.appendChild(container);
+    </script>
+</body>
+</html>
