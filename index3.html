@@ -16,18 +16,59 @@
                     <input id="valeur">
                 </form>
                 <div class="btn">
-                    <button id="ecrire">ecrire</button>
-                    <button id="lire">lire</button>
-                    <button id="effacer">effacer</button>
-                    <button id="reinitialiser">réinitialiser</button>
+                    <button id="ecrire" onclick="ecrire()">ecrire</button>
+                    <button id="lire" onclick="lire()">lire</button>
+                    <button id="effacer" onclick="effacer()">effacer</button>
+                    <button id="reinitialiser" onclick="reinitialiser()">réinitialiser</button>
                 </div>
             </fieldset>
         </section>
         <section class="zonePrev">
-            <fieldset>
-                <div class="divPrev"># TEST ZONE PREVISUALISATION</div>
+            <fieldset id="parentDiv">
+                <div id="divPrev"></div>
             </fieldset>
         </section>
     </main>
+    <script type="text/javascript">
+        var madiv = document.getElementById("divPrev");
+        var parent = document.getElementById("parentDiv");
+        var nom = document.getElementById("nom").value;
+        var valeur = document.getElementById("valeur").value;
+
+        function ecrire() {
+            nom = document.getElementById("nom").value;
+            valeur = document.getElementById("valeur").value;
+            sessionStorage.setItem("nom",nom);
+            sessionStorage.setItem("valeur",valeur);
+        }
+
+        function lire() {
+            nom = sessionStorage.getItem("nom");
+            valeur = sessionStorage.getItem("valeur");
+            if (nom == null){
+                nom = "Aucune valeur attribuée";
+            }
+            if (valeur == null){
+                valeur = "Aucune valeur attribuée";
+            }
+            madiv.innerHTML = "Nom: "+nom+"<br />Valeur: "+valeur;
+            parent.appendChild(madiv);
+        }
+
+        function effacer() {
+            nom = sessionStorage.getItem("nom");
+            valeur = sessionStorage.getItem("valeur");
+            madiv.innerHTML = "Vous venez d'effacer:<br /><br />Nom: "+nom+"<br />Valeur: "+valeur;
+            parent.appendChild(madiv);
+            sessionStorage.removeItem("nom");
+            sessionStorage.removeItem("valeur");
+        }
+        
+        function reinitialiser() {
+            madiv.innerHTML = "Vous venez de reinitialiser votre localstorage";
+            parent.appendChild(madiv);
+            sessionStorage.clear();
+        }
+    </script>
 </body>
 </html>
